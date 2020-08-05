@@ -1,0 +1,28 @@
+void func(vector<int> g[], int vertex, bool visited[], vector<int> &ans)
+{
+    if(visited[vertex] == true)
+        return;
+        
+    visited[vertex] = true;
+    ans.push_back(vertex);
+    for(int nbr:g[vertex])
+    {
+        func(g,nbr,visited,ans);
+    }
+    
+    return;
+}
+
+vector <int> dfs(vector<int> g[], int N)
+{
+    bool visited[N];
+    for(int i = 0 ; i<N ; i++)
+    visited[i] = false;
+    
+    vector<int> ans;
+    
+    func(g,0,visited,ans);
+    
+    return ans;
+
+}
