@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+// Function to calculate span
+// price[]: price array in input
+// n: size of array
+void calculateSpan(int price[], int n, int S[])
+{
+   // Your code here
+   S[0] = 1;  
+  
+    // Calculate span value of remaining days   
+    // by linearly checking previous days  
+    for (int i = 1; i < n; i++)  
+    {  
+        S[i] = 1; // Initialize span value  
+  
+        // Traverse left while the next element   
+        // on left is smaller than price[i]  
+        for (int j = i - 1; (j >= 0) &&  
+                (price[i] >= price[j]); j--)  
+            S[i]++;  
+    }  
+}
+void printArray(int arr[], int n)  
+{  
+    for (int i = 0; i < n; i++)  
+        cout << arr[i] << " ";  
+}
+
+// { Driver Code Starts.
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int i,a[n],s[n];
+		for(i=0;i<n;i++)
+		{
+			cin>>a[i];
+		}
+		
+		calculateSpan(a, n, s);
+		
+		for(i=0;i<n;i++)
+		{
+			cout<<s[i]<<" ";
+		}
+		cout<<endl;
+	}
+	return 0;
+}
+  // } Driver Code Ends
