@@ -1,0 +1,56 @@
+#define MAX 501
+
+int getId(int M[MAX][MAX],int n);
+
+int main()
+{
+    int T;
+    cin>>T;
+    int M[MAX][MAX];
+    while(T--)
+    {
+        int N;
+        cin>>N;
+        memset(M,0,sizeof M);
+        for(int i=0;i<N;i++)
+        {
+            for(int j=0;j<N;j++)
+            {
+                cin>>M[i][j];
+            }
+        }
+        cout<<getId(M,N)<<endl;
+
+    }
+}
+
+// } Driver Code Ends
+
+
+// The task is to complete this function
+
+// M[][]: input matrix
+// n: size of matrix (n*n)
+int getId(int M[MAX][MAX], int n)
+{
+    //Your code here
+    stack<int> s;
+    
+   for(int i=0;i<n;i++){
+    for(int j=0;j<n;j++){
+        if(i!=j){   // makes sense; person knows himself
+            if(M[i][j]==1){// if 1->2 means 1 knws 2
+            s.push(j);// then push 2; i.e push celebrity
+            if(!s.empty() && M[i][j]==M[j][i]) // is stack not empty and
+            s.pop();                          // 2->1 then pop top
+            }
+        }
+    }
+}
+    
+        if(s.empty())   // in the end if stack is empty; no celebrity
+        return -1;
+        
+        return s.top(); //else there will be celebrity
+        
+}
